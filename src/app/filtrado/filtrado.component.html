@@ -1,0 +1,214 @@
+<app-nav></app-nav>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  
+
+  <div class= "container-fluid">
+    <div class="row">
+      <div class="col-2">
+          <br>
+          <br>
+       
+    
+          <div class="col trans text-center">
+    
+            <button type="button" class="btn btn-primary" routerLink="/fechas"> <img src="assets/checar.png" width="130"
+                height="130" alt=""></button>
+            <br>
+            <br>
+            
+    
+            <button type="button" class="btn btn-primary" routerLink="/ChecarAsistencia"> <img src="assets/calendar.png"
+                width="130" height="130" alt=""></button>
+            <br>
+            <br>
+            <button type="button" class="btn btn-primary" routerLink="/Filtrado"> <img src="assets/filter.png"
+              width="130" height="130" alt=""></button>
+          </div>
+      </div>
+      <div class="col-10">
+          <br>
+      
+          <h4 class="text-center">Filtrados</h4>
+          <br>
+          <div class="container">
+              <form>
+                  <div class="form-row align-items-center">
+                    
+                    <div class="col-sm-3 my-1">
+                      <label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">Por</div>
+                        </div>
+                       
+                        <select class="custom-select mr-sm-2" id="filtrado" name="filtrado"   [(ngModel)]="filtrado">
+                            
+                            
+                            <option value="2">Profesor/Día</option>
+                            <option value="3">Semana</option>
+                            <option value="4">De semana A semana</option>
+                            <option value="5">Semana/Profesor</option>
+                          </select>
+                          <button type="button" class="btn btn-warning " (click)="activar()" ><i class="far fa-check-circle"></i></button>
+                      </div>
+                    </div>
+                    <div  >
+                       
+
+                          <form>
+                              <div class="form-row" *ngIf="mostrar2" >
+                                  <div class="col-5">
+                                      <input type="text"  class="form-control" placeholder="Profesor" name="profesor2" id="profesor2" [(ngModel)]="profesor2">
+                                      
+                                    </div>
+                                <div class="col">
+                                    <input type="text"  class="form-control" placeholder="Dia" name="dia" id="dia" [(ngModel)]="dia">
+                                </div>
+                                <div class="col">
+                                    <input type="text"   class="form-control" placeholder="Semana" name="semana2" id="semana2" [(ngModel)]="semana2">
+                                </div>
+                                <div class="col-auto my-1">
+                                    <button type="submit" class="btn btn-primary" (click)="getprofexdia()" ><i class="fas fa-search"></i></button>
+                                  </div>
+                              </div>
+                            
+                            </form>
+                            <form>
+                                <div class="form-row" *ngIf="mostrar3">
+                                    <div class="col-5">
+                                        <input type="text" class="form-control" placeholder="Semana" name="semana1" id="semana1" [(ngModel)]="semana1">
+                                        
+                                      </div>
+                                  
+                                  
+                                  <div class="col-auto my-1">
+                                      <button type="submit" class="btn btn-primary" (click)="getxsemana()"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                              
+                              </form>
+
+
+
+                          <form>
+                              <div class="form-row" *ngIf="mostrar4" >
+                                  <div class="col-5">
+                                      <input type="text"  class="form-control" placeholder="Profesor">
+                                      
+                                    </div>
+                                <div class="col">
+                                    <input type="text"  class="form-control" placeholder="De semana">
+                                </div>
+                                <div class="col">
+                                    <input type="text"  class="form-control" placeholder="A semana">
+                                </div>
+                                <div class="col-auto my-1">
+                                    <button type="submit" class="btn btn-primary" ><i class="fas fa-search"></i></button>
+                                  </div>
+                              </div>
+                            
+                            </form>
+                            <form>
+                                <div class="form-row" *ngIf="mostrar5" >
+                                    <div class="col-5">
+                                        <input type="text"  class="form-control" placeholder="Profesor" id="profesor" name="profesor" [(ngModel)]="profesor">
+                                        
+                                      </div>
+                                  <div class="col">
+                                      <input type="text"  class="form-control" placeholder="Semana" id="semana" name="semana" [(ngModel)]="semana">
+                                  </div>
+                                  
+                                  <div class="col-auto my-1">
+                                      <button type="submit" class="btn btn-primary" (click)="getprofexsemana()"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                              
+                              </form>
+
+                         
+                    </div>
+                    
+                    
+                  </div>
+                </form>
+                <br>
+                <br>
+              <table *ngIf="!tabla" datatable [dtOptions]="dtOptions" class="row-border hover">
+                  <thead>
+                    <tr >
+                      <th>Semana</th>
+                      <th>Profesor </th>
+                      <th>Reporteador</th>
+                      <th>Grupo</th>
+                      <th>Materia</th>
+                      <th>Horario</th>
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miercoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of baila">
+                      <td>{{x.semana}}</td>
+                      <td>{{x.profesor}}</td>
+                      <td>{{x.reporteador}}</td>
+                      <td>{{x.grupo}}</td>
+                      <td>{{x.materia}}</td>
+                      <td>{{x.horario}}</td>
+                      <td>{{x.lunes}}</td>
+                      <td>{{x.martes}}</td>
+                      <td>{{x.miercoles}}</td>
+                      <td>{{x.jueves}}</td>
+                      <td>{{x.viernes}}</td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+            
+                <table *ngIf="tabla2" datatable [dtOptions]="dtOptions" class="row-border hover">
+                  <thead>
+                    <tr >
+                      <th>Semana</th>
+                      <th>Profesor </th>
+                      <th>Reporteador</th>
+                      <th>Grupo</th>
+                      <th>Materia</th>
+                      <th>Horario</th>
+                      <th>Lunes</th>
+                      <th>Martes</th>
+                      <th>Miercoles</th>
+                      <th>Jueves</th>
+                      <th>Viernes</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let x of baila" >
+                      <td>{{x.semana}}</td>
+                      <td>{{x.profesor}}</td>
+                      <td>{{x.reporteador}}</td>
+                      <td>{{x.grupo}}</td>
+                      <td>{{x.materia}}</td>
+                      <td>{{x.horario}}</td>
+                      <td>{{x.lunes}}</td>
+                      <td>{{x.martes}}</td>
+                      <td>{{x.miercoles}}</td>
+                      <td>{{x.jueves}}</td>
+                      <td>{{x.viernes}}</td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+          </div>
+        
+            
+      </div>
+    </div>
+  </div>
+  

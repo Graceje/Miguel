@@ -1,0 +1,214 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<app-nav></app-nav>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-2">
+      
+        <br>
+        <br>
+     
+  
+        <div class="col trans text-center">
+  
+          <button type="button" class="btn btn-primary" routerLink="/fechas"> <img src="assets/checar.png" width="130"
+              height="130" alt=""></button>
+          <br>
+          <br>
+          
+  
+          <button type="button" class="btn btn-primary" routerLink="/ChecarAsistencia"> <img src="assets/calendar.png"
+              width="130" height="130" alt=""></button>
+          <br>
+          <br>
+          <button type="button" class="btn btn-primary" routerLink="/Filtrado"> <img src="assets/filter.png"
+            width="130" height="130" alt=""></button>
+        </div>
+        
+
+
+
+    </div>
+    <div class="col-10">
+      <div>
+
+        <div class="card"
+          style="margin-left: 10px; margin-right: 0px; margin-top: 30px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);">
+          <div class="card-body">
+            <h5 style="text-align: center"> Registro de semana</h5>
+            <hr>
+            <div class="row">
+              <div class="form-group col-sm-3">
+                <label>Nombre de la semana</label>
+                <input class="form-control" id="nombre" name="nombre" type="text" [(ngModel)]="nombre">
+              </div>
+              <div class="form-group col-sm-3">
+                <label>Fecha inicial</label>
+                <div class="input-group">
+                  <input class="form-control" [minDate]="minDate" [maxDate]="maxDate" placeholder="dd/mm/aaaa"
+                    bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" [(ngModel)]="fechaInicio" id="fechaInicio"
+                    name="fechaInicio">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-warning text-white " (click)="dp.show() "><i
+                        class="fas fa-calendar-alt"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-sm-3">
+                <label>Fecha final</label>
+                <div class="input-group">
+                  <input class="form-control" [minDate]="minDate" [maxDate]="maxDate" placeholder="dd/mm/aaaa"
+                    bsDatepicker #dp2="bsDatepicker" [bsConfig]="bsConfig" [(ngModel)]="fechaFin" id="fechaFin"
+                    name="fechaFin">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-warning text-white " (click)="dp2.show() "><i
+                        class="fas fa-calendar-alt"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-sm-3">
+                <label></label>
+
+
+                <button type="button" class="btn btn-primary btn-lg btn-block"
+                  (click)="registrar_semana()">Registrar</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card"
+          style="margin-left: 10px; margin-right: 0px; margin-top: 30px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);">
+          <div class="card-body">
+            <h5 style="text-align: center"> Semanas</h5>
+            <hr>
+            <table datatable [dtOptions]="dtOptions" id="customers" class="row-border hover">
+              <thead>
+                <tr>
+                  <th style="width:25%; background-color:#4989C9;color: white">NOMBRE DE LA SEMANA</th>
+                  <th style="width:25%; background-color:#4989C9;color: white">FECHA DE INICIO</th>
+                  <th style="width:25%; background-color:#4989C9;color: white">FECHA FINAL</th>
+                  <th style="width:25%; background-color:#4989C9;color: white">ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of bailar2">
+                  <td>{{x.nom_semana}}</td>
+                  <td>{{x.fechaInicio}}</td>
+                  <td>{{x.fechaFin}}</td>
+
+                  <td>
+                    <button style="margin-right:5px" type="button" class="btn btn-warning text-white "
+                      data-toggle="modal" data-target="#exampleModal" (click)="seleccione(x.idsemana)"><i class="far fa-edit"></i></button>
+                   
+                      <button *ngIf="!mostrar1" style="margin-right:5px" type="button" class="btn btn-warning text-white "><i
+                        class="far fa-thumbs-up" (click)= "activar()"></i></button>
+                        <button *ngIf="mostrar2" style="margin-right:5px" type="button" class="btn btn-warning text-white  " (click)= "baja()"><i class="fas fa-thumbs-down"></i></button>
+
+                    <button type="button" class="btn btn-warning text-white " data-toggle="modal" data-target="#exampleModal2" (click)="lista(x.idsemana)"><i
+                        class="far fa-check-circle"></i></button>
+                      </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar datos de semana</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-5 col-form-label">Nombre de la semana</label>
+                  <div class="col-sm-7">
+                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="datos.nom_semana">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Fecha inicio</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio"
+                      [(ngModel)]="datos.fechaInicio" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Fecha final</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="datos.fechaFin">
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-primary" (click)="editar()">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- Modal 2 -->
+     <div class="modal fade " id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Lista de Registros realizados</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+           <div>
+              <table  datatable [dtOptions]="dtOptions" id="customers" class="row-border hover">
+                  <thead>
+                      <tr>
+                          <th style="width:25%">Semana</th>
+                          <th style="width:25%">Matricula</th>
+                          <th style="width:25%">Nombre</th>
+                          <th style="width:25%">Grupo</th>
+                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let y of bailar3">
+                          <td>{{y.nom_semana}}</td>
+                          <td>{{y.matricula}}</td>
+                          <td>{{y.nombre}}</td>
+                          <td>{{y.grupo}}</td>
+                          
+                      </tr>
+                   
+                  </tbody>
+              </table>
+           </div>
+            
+
+         </div>
+         <div class="modal-footer">
+         </div>
+       </div>
+     </div>
+   </div>
+   
+  </div>
+</div>

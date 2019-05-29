@@ -1,0 +1,87 @@
+<app-nav></app-nav>
+
+<div class="container">
+  <br>
+  <h4 class="text-center">Coordinación Academica</h4>
+  <h5 class="text-center">Control de asistencia y avances programativos ciclo 2018-2019- II</h5>
+  <h6 class="text-center" *ngFor="let et of bailar">Usuario: {{et.tipo_usuario}}</h6>
+  <br>
+  <div class="row-center">
+    <form>
+      <div class="form-inline form-center " *ngFor="let et of bailar " >
+        <div class="form-group"  >
+          <label for="carrera">Carrera: </label>
+          <div class="col-6"> 
+            <input type="text" class="form-control" id="carrera" [(ngModel)]="et.carrera"  name="carrera" value="{{et.carrera}}"disabled >
+        </div>
+        </div>
+        <div class="form-group ">
+          <label for="grupo">Grupo: </label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" id="grupo" [(ngModel)]="et.grupo" name="grupo"  disabled >
+          </div>
+          
+        </div>
+        <div class="form-group ">
+          <label for="turno">Turno: </label>
+         <div class="col-sm-3">
+          <input type="text" class="form-control" id="turno" [(ngModel)]="et.turno" name="turno" disabled  >
+         </div>
+          
+        </div>
+        <div class="form-group">
+          <br>
+          <button class="btn btn-primary" type="submit" (click)="capturar(et.id_grupo,et.carrera,et.grupo,et.turno)">Continuar</button>
+        </div>
+      </div>
+    </form>
+    <br>
+
+    <div class="container">
+      <div>
+      </div>
+      <div class="row">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">HORA</th>
+              <th scope="col">MATERIA</th>
+              <th scope="col">PROFESOR</th>
+              <th scope="col">L</th>
+              <th scope="col">M</th>
+              <th scope="col">M</th>
+              <th scope="col">J</th>
+              <th scope="col">V</th>
+              <th scope="col">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let et of bailar2; let i = index">
+              <td id="horario{{i}}">{{et.horario}}</td>
+              <td>{{et.materia}}</td>
+              <td>{{et.profesor}}</td>
+              <td class="text-center">
+                <input class="form-check-input" (click)="sumaOresta('lunes',i)" type="checkbox" id="lunes{{i}}" >
+              </td>
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('martes',i)"id="martes{{i}}">
+              </td>
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('miercoles',i)" id="miercoles{{i}}">
+              </td>
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('jueves',i)" id="jueves{{i}}">
+              </td>
+              <td class="text-center" >
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('viernes',i)" id="viernes{{i}}">
+              </td>
+              <td  id="suma{{i}}"> 0 </td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-left: 490px;">
+          <button type="button" class="btn btn-outline-primary text-center " (click)="registrar()">Registrar asistencia</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+<!-- Image and text -->
+<nav class="navbar navbar-light " style=" background-color: #4989c9;">
+  <a class="navbar-brand text-white" href="#" style="font-style: oblique; font-family:'Times New Roman', Times, serif ">
+    <img src="assets/logo.PNG" width="80" height="60" alt="">
+    Facultad de Ingenieria Mochis
+  </a>
+  <form class="form-inline">
+
+    <div class="btn-group ">
+      <button type="button" *ngFor="let et of nombre" class="btn btn-warning dropdown-toggle text-white" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Bienvenido: {{et.nombre}}
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <button class="dropdown-item" type="button" (click)="cerrarsesion()">Cerrar sesión</button>
+      </div>
+    </div>
+  </form>
+
+
+</nav>

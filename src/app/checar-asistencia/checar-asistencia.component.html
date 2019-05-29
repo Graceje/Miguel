@@ -1,0 +1,111 @@
+<app-nav></app-nav>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <br>
+      <br>
+   
+
+      <div class="col trans text-center">
+
+        <button type="button" class="btn btn-primary" routerLink="/fechas"> <img src="assets/checar.png" width="130"
+            height="130" alt=""></button>
+        <br>
+        <br>
+        
+
+        <button type="button" class="btn btn-primary" routerLink="/ChecarAsistencia"> <img src="assets/calendar.png"
+            width="130" height="130" alt=""></button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary" routerLink="/Filtrado"> <img src="assets/filter.png"
+          width="130" height="130" alt=""></button>
+      </div>
+      
+
+    </div>
+    <div class="col-10">
+
+
+      <div class="card"
+        style="margin-left: 10px; margin-right: 0px; margin-top: 30px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);">
+        <div class="card-body">
+          <h5 style="text-align: center"> Consulta de Asistencia</h5>
+          <hr>
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label>Nombre de la semana</label>
+              <input class="form-control" id="semana" name="semana" [(ngModel)]="semana" type="text">
+            </div>
+            <div class="form-group col-sm-5">
+              <label>Nombre de profesor</label>
+              <div class="input-group">
+                <input class="form-control" id="profesor" name="profesor" [(ngModel)]="profesor" type="text">
+
+              </div>
+            </div>
+            <div class="form-group col-sm-2">
+                <label>Grupo</label>
+                <div class="input-group">
+                  <input class="form-control" id="grupo" name="grupo" [(ngModel)]="grupo" type="text">
+  
+                </div>
+              </div>
+            <div class="form-group col-sm-1">
+              <label></label>
+              <div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" (click)="getAsistencias()"><i
+                    class="fas fa-search"></i></button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="card"
+        style="margin-left: 10px; margin-right: 0px; margin-top: 0px; box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);">
+        <div class="card-body">
+          <h5 style="text-align: center"> Semanas</h5>
+          <hr>
+          <table datatable [dtOptions]="dtOptions" class="row-border hover">
+            <thead>
+              <tr>
+                <th style="width:25%; background-color:#4989C9;color: white">Reporteador</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Materia</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Grupo</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Horario</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Lunes</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Martes</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Miercoles</th>
+                <th style="width:25%; background-color:#4989C9;color: white">Jueves</th>
+                <th style="width:25%; background-color:#4989C9;color: white">viernes</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let et of bailar">
+                <td>{{et.reporteador}}</td>
+                <td>{{et.materia}}</td>
+                <td>{{et.grupo}}</td>
+                <td>{{et.horario}}</td>
+                <td>{{et.lunes}}</td>
+                <td>{{et.martes}}</td>
+                <td>{{et.miercoles}}</td>
+                <td>{{et.jueves}}</td>
+                <td>{{et.viernes}}</td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

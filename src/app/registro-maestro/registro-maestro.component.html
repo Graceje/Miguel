@@ -1,0 +1,62 @@
+<app-nav></app-nav>
+
+<div class="container">
+    <h4 class="text-center">Coordinación Academica</h4>
+    <h5 class="text-center">Control de asistencia y avances programativos ciclo 2018-2019- II</h5>
+    <h6 class="text-center" *ngFor="let et of bailar"> {{semana}} ({{fechaInicio}} A {{fechaFin}}) Usuario: {{et.tipo_usuario}}</h6>
+    <br>
+    <div class="row-center">
+       <div class="container">
+      <div>
+      </div>
+      <div class="row">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">HORA</th>
+              <th scope="col">MATERIA</th>
+              <th scope="col">GRUPO</th>
+              <th scope="col">CARERRA</th>
+              <th scope="col">TURNO</th>
+              <th scope="col">L</th>
+              <th scope="col">M</th>
+              <th scope="col">M</th>
+              <th scope="col">J</th>
+              <th scope="col">V</th>
+              <th scope="col">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let et of bailar2; let i = index">
+              <td id="horario{{i}}">{{et.horario}}</td>
+              <td>{{et.materia}}</td>
+              <td>{{et.grupo}}</td>
+              <td>{{et.carrera}}</td>
+              <td>{{et.turno}}</td>
+              <td class="text-center">
+                <input class="form-check-input" (click)="sumaOresta('lunes',i)" type="checkbox" id="lunes{{i}}" >
+              </td>
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('martes',i)"id="martes{{i}}">
+              </td>
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('miercoles',i)" id="miercoles{{i}}">
+              </td>
+              <td class="text-center">
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('jueves',i)" id="jueves{{i}}">
+              </td>
+              <td class="text-center" >
+                <input class="form-check-input" type="checkbox" (click)="sumaOresta('viernes',i)" id="viernes{{i}}">
+              </td>
+              <td  id="suma{{i}}"> 0 </td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-left: 490px;">
+          <button type="button" class="btn btn-outline-primary text-center "  (click)="registrar()">Registrar asistencia</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+</div>
