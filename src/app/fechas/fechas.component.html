@@ -101,10 +101,7 @@
                   <td>
                     <button style="margin-right:5px" type="button" class="btn btn-warning text-white "
                       data-toggle="modal" data-target="#exampleModal" (click)="seleccione(x.idsemana)"><i class="far fa-edit"></i></button>
-                   
-                      <button *ngIf="!mostrar1" style="margin-right:5px" type="button" class="btn btn-warning text-white "><i
-                        class="far fa-thumbs-up" (click)= "activar()"></i></button>
-                        <button *ngIf="mostrar2" style="margin-right:5px" type="button" class="btn btn-warning text-white  " (click)= "baja()"><i class="fas fa-thumbs-down"></i></button>
+                
 
                     <button type="button" class="btn btn-warning text-white " data-toggle="modal" data-target="#exampleModal2" (click)="lista(x.idsemana)"><i
                         class="far fa-check-circle"></i></button>
@@ -185,7 +182,7 @@
                           <th style="width:25%">Semana</th>
                           <th style="width:25%">Matricula</th>
                           <th style="width:25%">Nombre</th>
-                          <th style="width:25%">Grupo</th>
+                          
                           
                       </tr>
                   </thead>
@@ -194,7 +191,7 @@
                           <td>{{y.nom_semana}}</td>
                           <td>{{y.matricula}}</td>
                           <td>{{y.nombre}}</td>
-                          <td>{{y.grupo}}</td>
+                         
                           
                       </tr>
                    

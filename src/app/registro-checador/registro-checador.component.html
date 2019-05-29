@@ -9,11 +9,11 @@
     <form>
       <div class="form-inline form-center " >
         <div class="form-group"  >
-          <label for="carrera">Profesor : </label>
+          <label for="carrera">Grupos asigandos : </label>
           <div class="col-6"> 
             <select class="custom-select" name="profesor" id ="profesor" [(ngModel)]="vis.profesor" >
               <option selected>Selecciona el profesor a evaluar:</option>
-              <option *ngFor="let x of prof">{{x.nombre}}</option>
+              <option *ngFor="let x of prof">{{x.grupo}}</option>
               
             </select>
         </div>

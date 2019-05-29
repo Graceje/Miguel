@@ -20,12 +20,14 @@ export class RegistroChecadorComponent implements OnInit {
   vis={
     profesor: null,
   }
+  grupox;
  
   constructor(private reporteservice: SeleccionService, private routs: Router) {
     this.sesion=localStorage.getItem("matricula");
     this.semana = localStorage.getItem("semana");
     this.usuario = localStorage.getItem("usuario");
     this.idsemana=localStorage.getItem("idsemana");
+    this.grupox=localStorage.getItem("grupo");
    }
 
   ngOnInit() {
@@ -39,12 +41,13 @@ export class RegistroChecadorComponent implements OnInit {
   }
 
   getprofesor(){
-    this.reporteservice.getprofesor().subscribe(result =>  this.prof = result)
+    this.reporteservice.getprofesor(this.sesion).subscribe(result =>  this.prof = result)
   }
 
   getmateriasxprofe(){
     this.reporteservice.getmateriasxprofe(this.vis.profesor).subscribe(result =>  this.bailar2 = result)
     console.log(this.vis.profesor);
+    localStorage.setItem("grupo",this.vis.profesor);
   }
   acomodar(cont: any) {
 
@@ -57,7 +60,7 @@ export class RegistroChecadorComponent implements OnInit {
       this.bailar2[i].viernes = "NO";
       this.bailar2[i].reporteador = this.usuario;
       this.bailar2[i].semana = this.semana;
-      
+      this.bailar2[i].grupo = this.grupox;
       this.bailar2[i].sesion = this.sesion;
 
 

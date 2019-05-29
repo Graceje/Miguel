@@ -28,11 +28,11 @@ export class SeleccionService {
   nombresesion(matricula:string){
     return this._http.post('http://localhost/API-MIKE/nombresesion.php', { 'matricula': matricula});
   }
-  getprofesor(){
-    return this._http.get('http://localhost/API-MIKE/getprofesor.php');
+  getprofesor(matricula:string){
+    return this._http.post('http://localhost/API-MIKE/getprofesor.php', {'matricula': matricula});
   }
-  getmateriasxprofe(profesor: string){
-    return this._http.post('http://localhost/API-MIKE/getmateriasxprofe.php', { 'profesor': profesor});
+  getmateriasxprofe(grupo: string){
+    return this._http.post('http://localhost/API-MIKE/getmateriasxprofe.php', { 'grupo': grupo});
   }
   getdatosMaestro(matricula:string){
     return this._http.post('http://localhost/API-MIKE/getdatosMaestro.php', { 'matricula': matricula});
